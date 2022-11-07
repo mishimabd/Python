@@ -1,11 +1,13 @@
 import time
-name = input("Please enter your name: ")
+import pyfiglet
+
+name = input(pyfiglet.figlet_format("Please, enter your name:",justify="center"))
 # ---------Obersever----------------
 class Subscriber:
     def __init__(self, name):
         self.name = name
     def update(self, message):
-        print('{}{}, bon Appetit!'.format(message, self.name))
+        print(pyfiglet.figlet_format('{}{}, bon Appetit!'.format(message, self.name),justify="center"))
         
 class Publisher:
     def __init__(self):
@@ -32,6 +34,7 @@ class Order:
   '''Subsystem # 1'''
   
   def takeorder(self):
+    print("="*28)
     singleton = Singleton("Processing your order...")
     print(singleton.ordermessage)
 
@@ -213,17 +216,32 @@ class Quantity():
         total_price =  b_price + s_price + p_price
         return total_price
 
+class Template:
+   def prepare(self): pass
+
+
+class MakeMenu(Template):
+   def prepare(self,nameofthemenu, food, food2, food3, food4,none):
+      print()
+      print ("-"*28)
+      print (nameofthemenu)
+      print ("1. ", food)
+      print ("2. ",food2)
+      print ("3. ",food3)
+      print ("4. ",food4)
+      print ("5. ",none)
+      print ("-"*28)
+      print()
+
+menu = MakeMenu()
+
 class Menu():
     def burger_menu(self):
-        print("Burger Menu:")
-        print(" 1- Beef Burger\n 2 - Chicken Burger\n 3 - Cheese Burger\n 4 - Fish Burger \n 0 - None")
-
+        menu.prepare("Burger Menu:","Beef Burger","Chicken Burger","Cheese Burger","Fish Burger","None")
     def soda_menu(self):
-        print("Soda Menu: ")
-        print(" 1 - Cola\n 2 - Sprite \n 3 - Fanta \n 4 - Pepsi \n 0 - None")
+        menu.prepare("Soda Menu:","Cola","Sprite","Fanta","Pepsi","None")
     def pizza_menu(self):
-        print("Pizza Menu: ")
-        print(" 1 - Margarita\n 2 - Neapolitan \n 3 - New York-Style \n 4 - Chicago \n 5 - Sicilian \n 0 - None ")
+        menu.prepare("Pizza Menu:","Margarita","Neapolitan","New York-Style","Chicago","Sicilian")
         
 # Client Code
 if __name__ == '__main__':
@@ -259,6 +277,8 @@ if __name__ == '__main__':
         p_quantity = int(input("Enter quantity of Pizza: "))
     if p_no != 0:
         p_quantity = int(input("Enter quantity of Pizza: "))
+    print()
+    print("="*28)
     print("You ordered: ")
     b = BurgerStoreFactory()
     if b_no== 1:
