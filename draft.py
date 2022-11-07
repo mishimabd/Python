@@ -1,23 +1,55 @@
 import time
+name = input("Please enter your name: ")
+# ---------Obersever----------------
+class Subscriber:
+    def __init__(self, name):
+        self.name = name
+    def update(self, message):
+        print('{}{}, bon Appetit!'.format(message, self.name))
+        
+class Publisher:
+    def __init__(self):
+        self.subscribers = set()
+    def register(self, who):
+        self.subscribers.add(who)
+    def dispatch(self, message):
+        for subscriber in self.subscribers:
+            subscriber.update(message)
+
+client = Subscriber(name)
+pub = Publisher()
+# ---------Obersever----------------
+
+
+#
+class Singleton:
+    def __init__(self, ordermessage):
+        self.ordermessage = ordermessage
+
+#
+
 class Order:
   '''Subsystem # 1'''
-
+  
   def takeorder(self):
-    print("Processing your order...")
+    singleton = Singleton("Processing your order...")
+    print(singleton.ordermessage)
 
 
 class Cooking:
   '''Subsystem # 2'''
 
   def cook(self):
-    print("Cooking...")
+    singleton = Singleton("Cooking...")
+    print(singleton.ordermessage)
 
 
 class Bringing:
   '''Subsystem # 3'''
 
   def bring(self):
-    print("Take your food,please")
+    pub.register(client)
+    pub.dispatch("Your order is ready, ")
 
 
 class MakingFastFood1:
