@@ -21,12 +21,12 @@ pub = Publisher()
 # ---------Obersever----------------
 
 
-#
+# ---------Singleton----------------
 class Singleton:
     def __init__(self, ordermessage):
         self.ordermessage = ordermessage
 
-#
+# ---------Singleton----------------
 
 class Order:
   '''Subsystem # 1'''
