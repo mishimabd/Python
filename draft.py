@@ -323,6 +323,7 @@ if __name__ == '__main__':
     time.sleep(5)
     makingfastfood3 = MakingFastFood3()
     makingfastfood3.startOrder()
-
+    
+    exit = input("Press enter for exit")
 
 
