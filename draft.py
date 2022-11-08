@@ -221,15 +221,37 @@ class Template:
 
 
 class MakeMenu(Template):
-   def prepare(self,nameofthemenu, food, food2, food3, food4,none):
+   def prepareB(self,nameofthemenu, food, food2, food3, food4,none):
       print()
       print ("-"*28)
       print (nameofthemenu)
-      print ("1. ", food)
-      print ("2. ",food2)
-      print ("3. ",food3)
-      print ("4. ",food4)
-      print ("5. ",none)
+      print ("1. ", food, "   | 1600 ₸")
+      print ("2. ",food2, "| 1600 ₸")
+      print ("3. ",food3, " | 1600 ₸")
+      print ("4. ",food4, "   | 1600 ₸")
+      print ("0. ",none)
+      print ("-"*28)
+      print()
+   def prepareC(self,nameofthemenu, food, food2, food3, food4,none):
+      print()
+      print ("-"*28)
+      print (nameofthemenu)
+      print ("1. ", food, "          | 400 ₸")
+      print ("2. ",food2, "        | 400 ₸")
+      print ("3. ",food3, "         | 400 ₸")
+      print ("4. ",food4, "         | 400 ₸")
+      print ("0. ",none)
+      print ("-"*28)
+      print()
+   def prepareP(self,nameofthemenu, food, food2, food3, food4,none):
+      print()
+      print ("-"*28)
+      print (nameofthemenu)
+      print ("1. ", food, "     | 2500 ₸")
+      print ("2. ",food2, "    | 2500 ₸")
+      print ("3. ",food3, "| 2500 ₸")
+      print ("4. ",food4, "       | 2500 ₸")
+      print ("0. ",none)
       print ("-"*28)
       print()
 
@@ -237,11 +259,11 @@ menu = MakeMenu()
 
 class Menu():
     def burger_menu(self):
-        menu.prepare("Burger Menu:","Beef Burger","Chicken Burger","Cheese Burger","Fish Burger","None")
+        menu.prepareB("Burger Menu:","Beef Burger","Chicken Burger","Cheese Burger","Fish Burger","None")
     def soda_menu(self):
-        menu.prepare("Soda Menu:","Cola","Sprite","Fanta","Pepsi","None")
+        menu.prepareC("Soda Menu:","Cola","Sprite","Fanta","Pepsi","None")
     def pizza_menu(self):
-        menu.prepare("Pizza Menu:","Margarita","Neapolitan","New York-Style","Chicago","Sicilian")
+        menu.prepareP("Pizza Menu:","Margarita","Neapolitan","New York-Style","Chicago","None")
         
 # Client Code
 if __name__ == '__main__':
@@ -255,6 +277,8 @@ if __name__ == '__main__':
     while b_no in range(5,99):
         m.burger_menu()
         b_no = int(input("Choose Burger:"))
+        if b_no == 0:
+            break
         b_quantity = int(input("Enter quantity of Burger: "))
     if b_no != 0:
         b_quantity = int(input("Enter quantity of Burger: "))
@@ -264,6 +288,8 @@ if __name__ == '__main__':
     while s_no is False:
         m.soda_menu()
         s_no = int(input("Choose Soda: "))
+        if s_no == 0:
+            break
         s_quantity = int(input("Enter quantity of Soda: "))
     if s_no != 0:
         s_quantity = int(input("Enter quantity of Soda: "))
@@ -274,11 +300,14 @@ if __name__ == '__main__':
     while p_no is  False:
         m.pizza_menu()
         p_no = int(input("Choose Pizza: "))
+        if p_no == 0:
+            break
         p_quantity = int(input("Enter quantity of Pizza: "))
     if p_no != 0:
         p_quantity = int(input("Enter quantity of Pizza: "))
     print()
     print("="*28)
+    print()
     print("You ordered: ")
     b = BurgerStoreFactory()
     if b_no== 1:
@@ -333,17 +362,22 @@ if __name__ == '__main__':
         p_quantity = 0
 
     quan = Quantity()
-    print("Total Price: ", quan.count_quantity())
+    if quan.count_quantity() == 0:
+        print(pyfiglet.figlet_format('You didn\'t ordered anything :(',justify="center"))
+        exit = input("Press enter for exit")
+    else:
+        print("Total Price: ", quan.count_quantity())
+        print()
+        print ("="*28)
+        time.sleep(5)
+        makingfastfood2 = MakingFastFood2()
+        makingfastfood2.startOrder()
+        time.sleep(5)
+        makingfastfood3 = MakingFastFood3()
+        makingfastfood3.startOrder()
+        exit = input("Press enter for exit")
 
 
-    time.sleep(5)
-    makingfastfood2 = MakingFastFood2()
-    makingfastfood2.startOrder()
-
-    time.sleep(5)
-    makingfastfood3 = MakingFastFood3()
-    makingfastfood3.startOrder()
     
-    exit = input("Press enter for exit")
 
 
